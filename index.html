@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Directions</title>
+</head>
+<body>
+  <form id="direction-form">
+    <input type="text" id="address" placeholder="Enter your starting address" required />
+    <button type="submit">Get Directions</button>
+  </form>
+
+  <script>
+    document.getElementById('direction-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents form from reloading the page
+      getDirections();
+    });
+
+    function getDirections() {
+      const addressInput = document.getElementById('address');
+      const address = addressInput.value.trim();
+
+      if (!address) {
+        alert("Please enter your starting address.");
+        return;
+      }
+
+      const origin = encodeURIComponent(address);
+      const destination = encodeURIComponent('Russia'); // Fixed destination
+      const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
